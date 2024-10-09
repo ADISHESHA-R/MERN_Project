@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: relative;
+            overflow: hidden; /* To prevent scrollbars caused by absolute positioning */
+        }
+
+        .navbar {
+            background-color: lightblue;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: blue;
+        }
+
+        .navbar1 {
+            background-color: yellow;
+            padding: 5px;
+            display: flex;
+            justify-content: flex;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            height: calc(100vh - 80px); /* Adjusted to fit header */
+            position: relative; /* To ensure the background image stays behind the content */
+            z-index: 1;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 700px; /* Adjusted width for more space */
+        }
+
+        .form-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            text-align: left; /* Align label text to the left */
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"],
+        .form-container input[type="file"],
+        .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container input[type="radio"],
+        .form-container input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/011/473/510/small_2x/phoenix-logo-design-creative-logo-of-mythological-bird-free-vector.jpg" alt="Logo" width="90px" height="60px">
+        <a href="/openHome">Home</a>
+        <a href="/openStudentRegistration">Employee List</a>
+        <a href="/openLogout">Logout</a>
+    </div>
+    <div class="navbar1">
+        <p>Employee Edit</p>
+    </div>
+    <div class="content-container">
+        <div class="form-container">
+           <form action="/addStudent" method="post" onsubmit="return showAlert()">
+            
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mobile">Mobile No:</label>
+                <input type="tel" id="mobile" name="mobile" required>
+
+                <label for="designation">Designation:</label>
+                <select id="designation" name="designation" required>
+                    <option value="" disabled selected>Select Designation</option>
+                    <option value="HR">HR</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Sales">Sales</option>
+                </select>
+
+                <label>Gender:</label>
+                <label><input type="radio" name="gender" value="M" required> Male</label>
+                <label><input type="radio" name="gender" value="F" required> Female</label>
+
+                <label>Courses:</label>
+                <label><input type="checkbox" name="courses" value="MCA" > MCA</label>
+                <label><input type="checkbox" name="courses" value="BCA" > BCA</label>
+                <label><input type="checkbox" name="courses" value="BSC" > BSC</label>
+
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showAlert() {
+            alert('Employee Update successfully');
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>

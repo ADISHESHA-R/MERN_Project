@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SignUp</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e0f7fa;
+    color: #004d40;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    text-align: center;
+    color: #00796b;
+    margin-top: 20px;
+  }
+
+  form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #004d40;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  input[type="radio"] {
+    margin-right: 8px;
+  }
+
+  input[type="submit"] {
+    background-color: #00796b;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #004d40;
+  }
+
+  a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #00796b;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<form action="/signup" method="post">
+<h1>SignUp</h1>
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  
+  <label for="dob">DOB:</label>
+  <input type="date" id="dob" name="dob" required>
+  <hr>
+  <label>Gender:</label>
+  <label for="gender-m">Male</label>
+  <input type="radio" id="gender-m" name="gender" value="M">
+  <label for="gender-f">Female</label>
+  <input type="radio" id="gender-f" name="gender" value="F">
+  <label for="gender-o">Others</label>
+  <input type="radio" id="gender-o" name="gender" value="O">
+  <hr>
+  <input type="submit" value="SIGN UP">
+  <a href="/login">Already have an account? Login instead</a>
+</form>
+</body>
+</html>

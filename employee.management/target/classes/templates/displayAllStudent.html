@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display All Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: lightblue;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar1 {
+            background-color: yellow;
+            padding: 5px;
+            display: flex;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: black;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgb(128, 255, 255);
+        }
+
+        th {
+            background-color: lightblue;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        /* Buttons */
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .total-count {
+            font-size: 18px;
+            margin-left: 10px;
+             margin-top: 10px;
+              margin-right: 10px;
+            justify-content:flex-end;
+        }
+
+        .create-btn {
+            padding: 10px 20px;
+            background-color: lightgreen;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .create-btn:hover {
+            background-color: green;
+        }
+
+        /* Search Box */
+        .search-box {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+             justify-content: right;
+        }
+
+        /* Edit/Delete Buttons */
+        .action-buttons button {
+            margin-right: 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/011/473/510/small_2x/phoenix-logo-design-creative-logo-of-mythological-bird-free-vector.jpg" alt="Logo" width="90px" height="60px">
+        <a href="/openHome">Home</a>
+        <a href="/openStudentRegistration">Employee List</a>
+        <a href="/openLogout">Logout</a>
+    </div>
+
+    <div class="navbar1">
+        <p>Employee List</p>
+    </div>
+
+    <!-- Button Container with Total Count and Create Employee Button -->
+    <div class="button-container">
+        <div class="total-count">Total Count: <span id="totalEmployees">0</span></div>
+       <button class="create-btn" onclick="window.location.href='/openAddStudentPage'">Create Employee</button>
+    </div>
+
+    <!-- Search Box -->
+    <input type="text" class="search-box" id="searchInput" onkeyup="searchFunction()" placeholder="Search employees...">
+
+    <table id="employeesTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Designation</th>
+                <th>Gender</th>
+                <th>Courses</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Thymeleaf Section for Iterating Over Employee List -->
+            <tr th:each="st: ${studentList}">
+                <td th:text="${st.name}"></td>
+                <td th:text="${st.email}"></td>
+                <td th:text="${st.mobile}"></td>
+                <td th:text="${st.designation}"></td>
+                <td th:text="${st.gender}"></td>
+                <td th:text="${st.courses}"></td>
+                <td><img th:src="${st.image}" alt="Employee Image" width="60px" height="60px"></td>
+                <td class="action-buttons">
+                   <button class="edit-btn" onclick="window.location.href='/openUpdateStudentPage'">Edit</button>
+                    <button class="delete-btn"  onclick="window.location.href='/deleteStudent/{name}'">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        // Function to filter search results
+        function searchFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("employeesTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length - 1; j++) { // -1 to ignore action column
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+            updateEmployeeCount();
+        }
+
+        // Function to update total employee count
+        function updateEmployeeCount() {
+            var table, tr, count = 0;
+            table = document.getElementById("employeesTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                if (tr[i].style.display !== "none") {
+                    count++;
+                }
+            }
+            document.getElementById("totalEmployees").innerText = count;
+        }
+
+        // Functions for Edit and Delete actions
+        function editEmployee(employeeId) {
+            alert("Edit employee with ID: " + employeeId);
+            // You can replace this alert with actual logic for editing an employee
+        }
+
+        function deleteEmployee(employeeId) {
+            alert("Delete employee with ID: " + employeeId);
+            // You can replace this alert with actual logic for deleting an employee
+        }
+
+        // Initial count on page load
+        updateEmployeeCount();
+    </script>
+</body>
+</html>

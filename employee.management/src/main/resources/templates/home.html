@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+		h2{
+		margin-top:100px;
+		text-align: center;
+		}
+        .navbar {
+            background-color: lightblue;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+		 .navbar1 {
+            background-color: yellow;
+            padding: 5px;
+            display: flex;
+            justify-content: flex;
+            position: relative;
+            z-index: 1;
+        }
+        .navbar a {
+            color:black;
+            padding: 14px 16px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: blue;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Adjust height as needed */
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 400%; /* 100% per slide multiplied by number of slides */
+        }
+
+        .slides img {
+            width: 25%; /* Each image takes up 25% of the container width */
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        .announcements-updates {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .announcements,
+        .updates,
+        .development {
+            width: 32%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .announcements h2,
+        .updates h2,
+        .development h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .announcement-item,
+        .update-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .announcement-item:hover,
+        .update-item:hover {
+            background-color: #eaeaea;
+        }
+
+        @media (max-width: 768px) {
+            .announcements-updates {
+                flex-direction: column;
+            }
+
+            .announcements,
+            .updates,
+            .development {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+    	<img src="https://static.vecteezy.com/system/resources/thumbnails/011/473/510/small_2x/phoenix-logo-design-creative-logo-of-mythological-bird-free-vector.jpg" alt="Logo" width="90px" height="60px">
+        <a href="/openHome">Home</a>
+        <a href="/openStudentRegistration">Employee List</a>
+        <a href="/openLogout">Logout</a>
+    </div>
+ 	<div class="navbar1">
+ 	<p>DashBoard</p>
+ 	</div>
+ 	<h2>Welcome Admin Panel</h2>
+</body>
+</html>
